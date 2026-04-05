@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-demo-app1
+  labels:
+    app: argocd-demo-app1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: argocd-demo-app1
+  template:
+    metadata:
+      labels:
+        app: argocd-demo-app1
+    spec:
+      containers:
+      - name: app1
+        image: anbtech108/argocd-demo:latest   # same image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
